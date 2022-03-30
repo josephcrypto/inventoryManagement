@@ -41,7 +41,7 @@ public class Item {
 
     private String tpLinkSwitch16p;
 
-    private String getTpLinkSwitch8p;
+    private String tpLinkSwitch8p;
 
     private String nvr32Channel;
 

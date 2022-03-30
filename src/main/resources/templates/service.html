@@ -1,0 +1,77 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Services Section</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+</head>
+<style>
+    .footer {
+        position: absolute;
+        font-size: small;
+        bottom: 0;
+        width:100%;
+        height: 40px;
+        background-color: #0d0d15;
+        text-align: center;
+        color: white;
+    }
+</style>
+<body style="background-color: #0d0d15;">
+<section class="services">
+    <!--heading---------------->
+    <div class="s-heading">
+        <h1>Ser<font color="#4a90e2">vic</font>es</h1>
+        <p><strong>We Provide The Best In Class Services For Our Customers</strong></p>
+    </div>
+    <!--services-box-container------------------->
+    <div class="s-box-container">
+        <!--service-box-1---------------->
+        <div class="s-box">
+            <!--top-bar-------->
+            <div class="bar"></div>
+            <!--img---------->
+            <img th:src="@{/img/1.png}" alt="" />
+            <!--servies-name---------->
+            <h1>Make Money Easy</h1>
+            <!--details------>
+            <p>Track on your all daily income and make your day to life easier.</p>
+            <!--btn---------->
+            <a class="s-btn" href="#">More</a>
+        </div>
+        <!--service-box-1---------------->
+        <div class="s-box">
+            <!--top-bar-------->
+            <div class="bar"></div>
+            <!--img---------->
+            <img th:src="@{/img/2.png}" alt="" />
+            <!--servies-name---------->
+            <h1>Card Gaming Service</h1>
+            <!--details------>
+            <p>Make a card gaming with our Service is the best choose of your business.</p>
+            <!--btn---------->
+            <a class="s-btn" href="#">More</a>
+        </div>
+        <!--service-box-3---------------->
+        <div class="s-box">
+            <!--top-bar-------->
+            <div class="bar"></div>
+            <!--img---------->
+            <img th:src="@{/img/3.png}" alt=""/>
+            <!--servies-name---------->
+            <h1>Security</h1>
+            <!--details------>
+            <p>We Store All Card Info And Money Safe To Make You Relax And Crazy</p>
+            <!--btn---------->
+            <a class="s-btn" href="#">More</a>
+        </div>
+    </div>
+</section>
+<div>
+    <footer class="footer">
+        <span class="text-muted">Power By 2021 @Joseph Crypto </span>
+    </footer>
+</div>
+</body>
+</html>

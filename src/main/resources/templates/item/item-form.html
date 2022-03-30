@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <link href="/css/style.css" rel="stylesheet">
+    <title>Inventory Item List</title>
+
+    <style>
+        .nav-menu a:hover, .nav-menu .active > a, .nav-menu li:hover > a {
+            text-decoration: none;
+            color: #23cb18;
+        }
+
+        #main{
+            margin-left: 20em;
+        }
+    </style>
+
+</head>
+<body>
+<header id="header">
+    <div class="d-flex flex-column">
+        <div class="profile">
+            <h1 class="text-light mt-3 ml-3"><a href="/inventory">Home</a></h1>
+        </div>
+
+        <nav class="nav-menu">
+            <ul>
+                <li class="active"><a href="/inventory/list"><span>List</span></a></li>
+                <li><a href="/logout"><span>Logout</span></a></li>
+            </ul>
+        </nav>
+
+        <button type="button" class="mobile-nav-toggle d-xl-none"><i class="icofont-navigation-menu"></i></button>
+
+    </div>
+</header>
+<main id="main">
+    <div class="container">
+        <h2 style="text-align: center">Item Details</h2>
+
+        <form th:action="@{/inventory/save}" th:object="${item}" method="post">
+            <input type="hidden" th:field="*{id}">
+            <div class="form-group">
+                <label for="cameraIp">cameraIp</label>
+                <input type="number" class="form-control" id="cameraIp" th:field="*{cameraIp}"  placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="computerIp">computerIp</label>
+                <input type="number" class="form-control" id="computerIp" th:field="*{computerIp}"  placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="position">Position</label>
+                <input type="text" class="form-control" id="position" th:field="*{position}"  placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="department">Department</label>
+                <input type="text" class="form-control" id="department" th:field="*{department}"  placeholder="">
+            </div>d
+
+            <div class="form-group">
+                <label for="chinaName">ChinaName</label>
+                <input type="text" class="form-control" id="chinaName" th:field="*{chinaName}"  placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="routerAp">RouterAp</label>
+                <input type="number" class="form-control" id="routerAp" th:field="*{routerAp}"  placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="systemUnit">SystemUnit</label>
+                <input type="text" class="form-control" id="systemUnit" th:field="*{systemUnit}"  placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="monitor">Monitor</label>
+                <input type="text" class="form-control" id="monitor" th:field="*{monitor}"  placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="h3cMiniRouter">H3CMiniRouter</label>
+                <input type="text" class="form-control" id="h3cMiniRouter" th:field="*{h3cMiniRouter}"  placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="tpLinkRouter">TpLinkRouter</label>
+                <input type="text" class="form-control" id="tpLinkRouter" th:field="*{tpLinkRouter}"  placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="tpLinkSwitch16p">TpLinkSwitch16p</label>
+                <input type="text" class="form-control" id="tpLinkSwitch16p" th:field="*{tpLinkSwitch16p}"  placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="tpLinkSwitch8p">TpLinkSwitch8p</label>
+                <input type="text" class="form-control" id="tpLinkSwitch8p" th:field="*{tpLinkSwitch8p}"  placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="nvr32Channel">NVR32Channel</label>
+                <input type="text" class="form-control" id="nvr32Channel" th:field="*{nvr32Channel}"  placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="h3cManagementSwitch">H3CManagementSwitch</label>
+                <input type="text" class="form-control" id="h3cManagementSwitch" th:field="*{h3cManagementSwitch}"  placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="rj45NetworkCableBox">RJ45NetworkCableBox</label>
+                <input type="text" class="form-control" id="rj45NetworkCableBox" th:field="*{rj45NetworkCableBox}"  placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="condition">Condition</label>
+                <input type="text" class="form-control" id="condition" th:field="*{condition}"  placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="used">Used</label>
+                <input type="text" class="form-control" id="used" th:field="*{used}"  placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="notUsed">NotUsed</label>
+                <input type="text" class="form-control" id="notUsed" th:field="*{notUsed}"  placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="totalItem">TotalItem</label>
+                <input type="number" class="form-control" id="totalItem" th:field="*{totalItem}"  placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="remark">Remark</label>
+                <input type="text" class="form-control" id="remark" th:field="*{remark}"  placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" th:field="*{password}" th:required="${item.id}?false : true" placeholder="">
+            </div>
+            <br />
+            <br />
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-secondary" onclick="cancelForm()">Cancel</button>
+
+
+        </form>
+
+    </div>
+</main>
+
+</body>
+<script type="text/javascript">
+    function cancelForm(){
+        window.location = "[[@{/inventory/list}]]"
+    }
+</script>
+</html>

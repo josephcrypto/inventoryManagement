@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <link href="/css/style.css" rel="stylesheet">
+    <title>Inventory List</title>
+
+    <style>
+        .nav-menu a:hover, .nav-menu .active > a, .nav-menu li:hover > a {
+            text-decoration: none;
+            color: #37e347;
+        }
+
+        #main{
+            margin-left: 20em;
+        }
+
+        .table td, .table th{
+            padding: 7px !important;
+            vertical-align: middle !important;
+        }
+        #id_confrmdiv
+        {
+            display: none;
+            background-color: #eee;
+            border-radius: 5px;
+            border: 1px solid #aaa;
+            position: fixed;
+            width: 300px;
+            height: 215px;
+            top:23%;
+            left: 50%;
+            margin-left: -150px;
+            padding: 6px 8px 8px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        #id_confrmdiv button {
+            background-color: #ccc;
+            display: inline-block;
+            border-radius: 3px;
+            border: 1px solid #aaa;
+            padding: 2px;
+            text-align: center;
+            width: 80px;
+            cursor: pointer;
+            margin-top: 6em;
+        }
+
+        #id_confrmdiv .button:hover
+        {
+            background-color: #ddd;
+        }
+
+        #confirmBox .message
+        {
+            text-align: left;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div id="id_confrmdiv">
+        <p>Are you sure want to delete this item?</p>
+        <button id="id_truebtn">Yes</button>
+        <button id="id_falsebtn">No</button>
+    </div>
+
+<header id="header">
+    <div class="d-flex flex-column">
+        <div class="profile">
+            <h1 class="text-light mt-3"><a href="/inventory/list">Home</a> </h1>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="/inventory/list"><span>List-item</span></a></li>
+
+                <li><a href="/logout"><span>Logout</span></a></li>
+            </ul>
+        </nav>
+
+        <button type="button" class="mobile-nav-toggle d-xl-none"><i class="icofont-navigation-menu"></i></button>
+    </div>
+</header>
+
+    <main id="main">
+        <div class="container-fluid text-center">
+            <a class="btn btn-primary btn-sm mt-2 mb-2 float-left" th:href="@{/inventory/new}">Add New Item</a>
+
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th>CameraIP</th>
+                    <th>ComputerIP</th>
+                    <th>Position</th>
+                    <th>Department</th>
+                    <th>ChinaName</th>
+                    <th>RouterAP</th>
+                    <th>SystemUnit</th>
+                    <th>Monitor</th>
+                    <th>H3CMiniRouter</th>
+                    <th>TPLinkRouter</th>
+                    <th>TPLinkSwitch16P</th>
+                    <th>TPLinkSwitch8P</th>
+                    <th>NVR32Channel</th>
+                    <th>H3CManagementSwitch</th>
+                    <th>RJ45NetworkCableBox</th>
+                    <th>Condition</th>
+                    <th>Used</th>
+                    <th>NotUsed</th>
+                    <th>TotalItem</th>
+                    <th>Password</th>
+                    <th>Remark</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item : ${listItems.page}">
+                    <td th:text="${item.getCameraIp()}"></td>
+                    <td th:text="${item.getComputerIp()}"></td>
+                    <td th:text="${item.getPosition()}"></td>
+                    <td th:text="${item.getDepartment()}"></td>
+                    <td th:text="${item.getChinaName()}"></td>
+                    <td th:text="${item.getRouterAp()}"></td>
+                    <td th:text="${item.getSystemUnit()}"></td>
+                    <td th:text="${item.getMonitor()}"></td>
+                    <td th:text="${item.getH3cMiniRouter()}"></td>
+                    <td th:text="${item.getTpLinkSwitch16p()}"></td>
+                    <td th:text="${item.getTpLinkSwitch8p()}"></td>
+                    <td th:text="${item.getTpLinkRouter()}"></td>
+                    <td th:text="${item.getNvr32Channel()}"></td>
+                    <td th:text="${item.getH3cManagementSwitch()}"></td>
+                    <td th:text="${item.getRj45NetworkCableBox()}"></td>
+                    <td th:text="${item.getCondition()}"></td>
+                    <td th:text="${item.getUsed()}"></td>
+                    <td th:text="${item.getNotUsed()}"></td>
+                    <td th:text="${item.getTotalItem()}"></td>
+                    <td th:text="${item.getPassword()}"></td>
+                    <td th:text="${item.getRemark()}"></td>
+                    <td>
+                        <a class="btn btn-primary m-1" th:href="@{'/inventory/edit/' + ${item.getId()}}">Edit</a>
+                        <button class="btn btn-danger m-1" th:onclick="|deletemanager('${item.getId()}')|">Delete</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <nav aria-label="Page navigation" class="paging">
+                <ul class="pagination" th:if="${listItems.page.totalPages > 1}">
+                    <li class="page-item" th:classappend="${!listItems.paging.isPrevEnabled()? 'disabled' : ''}">
+                        <a class="page-link" th:href="@{'/inventory/list/?pageNumber=' + ${listItems.paging.pageNumber - 1}}"
+                           tabindex="-1">Previous</a>
+                    </li>
+                    <th:block th:each="item : ${listItems.paging.getItems()}">
+                        <li class="page-item" th:classappend="${item.index == listItems.paging.pageNumber? 'active' : ''}"
+                            th:if="${item.pageItemType.name() == 'PAGE'}">
+                            <a class="page-link" th:href="@{'/inventory/list/?pageNumber=' + ${item.index}}"
+                               th:text="${item.index}"></a>
+                        </li>
+                        <li class="page-item disabled" th:if="${item.pageItemType.name() == 'DOTS'}">
+                            <a class="page-link" href="#">...</a>
+                        </li>
+                    </th:block>
+                    <li class="page-item" th:classappend="${!listItems.paging.isNextEnabled()? 'disabled' : ''}">
+                        <a class="page-link" th:href="@{'/inventory/list/?pageNumber=' + ${listItems.paging.pageNumber + 1}}">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </main>
+</body>
+</html>
