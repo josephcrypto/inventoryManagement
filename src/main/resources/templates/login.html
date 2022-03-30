@@ -41,11 +41,11 @@
                 contentType: "application/json",
                 data:JSON.stringify(data),
                 success: function (json) {
-                    if(json.code=="1") {
-                        window.location = "/home";
-                    }else {
-                        $("#message").html(json.message);
-                    }
+                console.log(json);
+                $("#message").html(json.message);
+                if (json.code=="1"){
+                    window.location = "/home";
+                }
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
                     $("#message").html('Request Failed: ' + textStatus);
@@ -55,7 +55,7 @@
         }
 
         $(function(){
-            $('#btnlogin').click(function() {
+            $('#login').click(function() {
                 sendajax();
             });
         });
@@ -67,12 +67,12 @@
         <h3 style="text-align: center;color: white;margin-bottom: 0.7em;">Inventory Management System</h3>
         <h3 id="message" style="color: red"></h3>
         <div class="form-group">
-            <input type="text" class="form-control" id="usr" name="username" placeholder="Username">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username">
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" id="pwd" name="password" placeholder="Password">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
         </div>
-        <button class="btn btn-primary" id="btnlogin">Login</button>
+        <button id="login" class="btn btn-primary" >Login</button>
     </div>
 </div>
 </body>
